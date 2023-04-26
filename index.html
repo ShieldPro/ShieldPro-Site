@@ -29,7 +29,7 @@
 
         #window{
             background-color: rgb(0, 0, 0);
-            border-radius: 10px; 
+            border-radius: 10px;
             overflow: hidden;
             border: 5px solid rgb(36, 36, 36);
             opacity: 0.9;
@@ -42,26 +42,53 @@
         #nick{
             position: relative;
             margin-left: 10px;
-            font-size: 2vw;
             font-weight: bold;
             margin-top: 16%;
             opacity: 0.8;
-            line-height: 1.2vw;
         }
 
         #copyButton{
             all: unset;
             position: relative;
-            height: 1.5vw;
-            width: 1.5vw;
+            height: 4%;
+            width: 4%;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            top: 1.8vw;
             margin-left: 0.5vw;
             cursor: pointer;
             margin-top: 12%;
+        }
+
+        @media (min-width: 768px) {
+            #nick {
+                font-size: 2vw;
+                line-height: 1.4vw;
+            }
+
+            devTitle{
+                font-size: 1vw;
+            }
+
+            #copyButton{
+                top: 1.6vw;
+            }
+        }
+        /* If the screen size is smaller than 1200px, set the font-size to 80px */
+        @media (max-width: 767.99px) {
+            #nick {
+                font-size: 4vw;
+                line-height: 3vw;
+            }
+
+            devTitle{
+                font-size: 2vw;
+            }
+
+            #copyButton{
+                top: 3vw;
+            }
         }
         
         #intro{
@@ -95,7 +122,6 @@
 
         devTitle{
             font-weight: normal;
-            font-size: 1vw;
         }
 
         a{
@@ -111,13 +137,13 @@
 <body>
     <div id="background-video-div">
         <video loop id="background-video">
-            <source src="https://dt163.dlsnap12.xyz/download?file=MzVlNWVhYjM3ZmQ4ZWIzYjEwYTg3NWMyNmM4NjU5NDgxNzM3ZTZlNDZmMjRlNzY3MThjZDA1YjljZjNmZjIzNl8xMDgwcC5tcDTimK9YMkRvd25sb2FkLmFwcC1EVlJTVCwgU2Nhcmx4cmQgLSBBbHdheXMgV2FudCBNZeKYrzEwODBw" type="video/mp4">
+            <source src="files/video.mp4" type="video/mp4">
         </video>
     </div>
 
     <div id="container" class="container-fluid">
 
-        <div id="window" class="col-6">
+        <div id="window" class="col-12 col-md-6">
             <img id="banner" class="w-100">
             <div class="px-3">
                 <div class="d-flex" style="margin-top: -12%;">
