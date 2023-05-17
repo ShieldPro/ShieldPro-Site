@@ -4,6 +4,10 @@
     font-family: "Roboto";
 }
 
+body{
+    background-color: black;
+}
+
 #background-video-div{
     display: flex;
     align-items: center;
