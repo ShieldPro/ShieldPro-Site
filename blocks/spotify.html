@@ -26,6 +26,8 @@
 </div>
 
 <script>
+     document.title = "ShieldPro - SPOTIFY 🎧";
+    
     async function loadSpotify() {
         const refreshToken = await fetch("refresh_token.txt")
             .then((res) => res.text())
