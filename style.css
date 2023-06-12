@@ -523,7 +523,7 @@ hr{
     gap: 10px;
     height: 430px;
     flex-wrap: wrap;
-    overflow: auto;
+    overflow-y: hidden;
 }
 
 .tracks div{
