@@ -165,7 +165,7 @@
                 div.innerHTML = `
                     <span style="font-size: 70%; color: rgb(131, 131, 131);"><b>PLAYING A GAME</b></span>
                     <div class="discordPresenceContent">
-                        <img src='${e.assets ? "https://cdn.discordapp.com/app-assets/" + e.application_id + "/" + e.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + e.application_id}'>
+                        <img src='${e.assets ? "https://cdn.discordapp.com/app-assets/" + e.application_id + "/" + e.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + e.application_id}' ${e.assets && e.assets.large_text && `onmouseenter="showTooltip(this, '`+ e.assets.large_text +`')" onmouseleave="hideTooltip()"`}/>
                         
                         <div>
                             <span><b>${e.name}</b></span>
@@ -179,6 +179,14 @@
                 document.querySelector("#discordPresence").style.display = "flex";
             }
         });
+
+        // document.querySelector("#presenceAvatar").src = activity.assets ? "https://cdn.discordapp.com/app-assets/" + activity.application_id + "/" + activity.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + activity.application_id;
+        // document.querySelector("#presenceName").innerHTML = "<b>" + activity.name + "</b>";
+        // document.querySelector("#presenceDescription").innerHTML = activity.details || "";
+        // document.querySelector("#presenceState").innerHTML = activity.state || "";
+        // document.querySelector("#presenceTime").innerHTML = activity.timestamps.start ? new Date(Date.now() - activity.timestamps.start).toISOString().slice(11, 19) + " elapsed" : "";
+        // document.querySelector("#discordPresence").style.display = "flex";
+        // https://cdn.discordapp.com/app-assets/383226320970055681/565944799455346703.png
     }
     loadDiscord()
 </script>
