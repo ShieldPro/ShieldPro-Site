@@ -385,20 +385,27 @@ hr{
 }
 
 #discordPresence{
-    display: none;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
-#presenceAvatar{
-    border-radius: 10px;
-    max-height: 90px;
+.discordPresenceContent{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 80%;
+    margin-top: 5px;
 }
 
-#presenceDetails{
+.discordPresenceContent img{
+    max-height: 90px;
+    border-radius: 10px;
+}
+
+.discordPresenceContent div{
     display: flex;
     flex-direction: column;
-    font-size: 80%;
 }
 
 #otherSocials{
