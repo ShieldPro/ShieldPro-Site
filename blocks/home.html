@@ -169,7 +169,7 @@
         // DISCORD PRESENCE
         var activity;
         await jsonData.data.activities.every(e => {
-            if (e.type == 0){
+            if (e.type == 0 && e.assets){
                 console.log(e.type);
                 activity = e;
                 return false;
