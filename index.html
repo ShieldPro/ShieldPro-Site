@@ -77,6 +77,8 @@
         function hideIntro(){
             document.querySelector("#intro").style.opacity = 0;
             document.querySelector("#background-video").play();
+            document.querySelector("#content").classList.remove("fade-in");
+            document.querySelector("#content").offsetHeight;
             document.querySelector("#content").classList.add("fade-in");
 
             setTimeout(() => {
@@ -95,29 +97,21 @@
         }
 
         function loadContent(){
-            const urlParams = new URLSearchParams(window.location.search);
-            $("#content").load("blocks/"+ (urlParams.get("page") || "home") +".html");
-        }
-
-        var changePageTimer;
-        function changePage(page){
-            if (changePageTimer){return}
             document.querySelector("#content").classList.remove("fade-in");
             document.querySelector("#content").classList.add("fade-out");
 
-            setTimeout(() => {
-                modifyUrl("Test", "?page="+page)
-                loadContent()
-            }, 200);
-
-            changePageTimer = setTimeout(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            $("#content").load("blocks/"+ (urlParams.get("page") || "home") +".html", function(){
                 document.querySelector("#content").classList.remove("fade-out");
                 document.querySelector("#content").classList.add("fade-in");
-                changePageTimer = null
-            }, 300);
+            });
         }
-
         loadContent()
+
+        function changePage(page){
+            modifyUrl("Test", "?page="+page)
+            loadContent()
+        }
 
         function showTooltip(element, text){
             document.querySelector("#tooltip").innerHTML = text;
