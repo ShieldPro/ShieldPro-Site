@@ -159,7 +159,6 @@
         }
 
         // DISCORD PRESENCE
-        var activity;
         await jsonData.data.activities.forEach(e => {
             if (e.type == 0){
                 var div = document.createElement("div");
@@ -179,8 +178,6 @@
                 document.querySelector("#discordPresence").appendChild(div);
             }
         });
-
-        console.log(activity)
 
         // document.querySelector("#presenceAvatar").src = activity.assets ? "https://cdn.discordapp.com/app-assets/" + activity.application_id + "/" + activity.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + activity.application_id;
         // document.querySelector("#presenceName").innerHTML = "<b>" + activity.name + "</b>";
