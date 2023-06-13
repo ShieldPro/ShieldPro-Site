@@ -28,7 +28,7 @@
             <hr id="discordHR" style="background: rgba(255, 255, 255, 0.1) !important; display: none;">
 
             <div id="discordPresence">
-                <img id="presenceAvatar" height="90px">
+                <img id="presenceAvatar">
 
                 <div id="presenceDetails">
                     <span id="presenceName"></span>
@@ -169,7 +169,7 @@
         // DISCORD PRESENCE
         var activity;
         await jsonData.data.activities.every(e => {
-            if (e.type == 0 && e.assets){
+            if (e.type == 0){
                 console.log(e.type);
                 activity = e;
                 return false;
@@ -180,10 +180,10 @@
 
         console.log(activity)
 
-        document.querySelector("#presenceAvatar").src = "https://cdn.discordapp.com/app-assets/" + activity.application_id + "/" + activity.assets.large_image + ".png";
+        document.querySelector("#presenceAvatar").src = activity.assets ? "https://cdn.discordapp.com/app-assets/" + activity.application_id + "/" + activity.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + activity.application_id;
         document.querySelector("#presenceName").innerHTML = "<b>" + activity.name + "</b>";
-        document.querySelector("#presenceDescription").innerHTML = activity.details;
-        document.querySelector("#presenceState").innerHTML = activity.state;
+        document.querySelector("#presenceDescription").innerHTML = activity.details || "";
+        document.querySelector("#presenceState").innerHTML = activity.state || "";
         document.querySelector("#presenceTime").innerHTML = activity.timestamps.start ? new Date(Date.now() - activity.timestamps.start).toISOString().slice(11, 19) + " elapsed" : "";
         document.querySelector("#discordHR").style.display = "block";
         document.querySelector("#discordPresence").style.display = "flex";
