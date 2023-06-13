@@ -167,11 +167,10 @@
         }
 
         // DISCORD PRESENCE
-        var activity;
-        await jsonData.data.activities.forEach(e => {
+        const activity = await jsonData.data.activities.every(e => {
             if (e.type == 0){
                 console.log(e.type);
-                activity = e;
+                return e;
             }
         });
 
@@ -181,7 +180,7 @@
         document.querySelector("#presenceName").innerHTML = "<b>" + activity.name + "</b>";
         document.querySelector("#presenceDescription").innerHTML = activity.details;
         document.querySelector("#presenceState").innerHTML = activity.state;
-        document.querySelector("#presenceTime").innerHTML = new Date(Date.now() - activity.timestamps.start).toISOString().slice(11, 19) + " elapsed";
+        document.querySelector("#presenceTime").innerHTML = activity.timestamps.start ? new Date(Date.now() - activity.timestamps.start).toISOString().slice(11, 19) + " elapsed" : "";
         document.querySelector("#discordHR").style.display = "block";
         document.querySelector("#discordPresence").style.display = "flex";
         // https://cdn.discordapp.com/app-assets/383226320970055681/565944799455346703.png
