@@ -328,7 +328,7 @@ hr{
 
 #spotify{
     display: flex;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
 }
 
@@ -351,7 +351,7 @@ hr{
 
 #discordUserInfo{
     display: flex;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
 }
 
@@ -387,7 +387,7 @@ hr{
 #discordPresence{
     display: none;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 #presenceAvatar{
