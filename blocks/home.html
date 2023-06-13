@@ -25,17 +25,9 @@
                 </div>
             </div>
 
-            <hr id="discordHR" style="background: rgba(255, 255, 255, 0.1) !important; display: none;">
-
             <div id="discordPresence">
-                <img id="presenceAvatar">
+                <hr style="background: rgba(255, 255, 255, 0.1) !important; margin-bottom: 0 !important;">
 
-                <div id="presenceDetails">
-                    <span id="presenceName"></span>
-                    <span id="presenceDescription"></span>
-                    <span id="presenceState"></span>
-                    <span id="presenceTime"></span>
-                </div>
             </div>
         </div>
 
@@ -168,25 +160,34 @@
 
         // DISCORD PRESENCE
         var activity;
-        await jsonData.data.activities.every(e => {
+        await jsonData.data.activities.forEach(e => {
             if (e.type == 0){
-                console.log(e.type);
-                activity = e;
-                return false;
+                var div = document.createElement("div");
+                div.innerHTML = `
+                    <span style="font-size: 70%; color: rgb(131, 131, 131);"><b>PLAYING A GAME</b></span>
+                    <div class="discordPresenceContent">
+                        <img src='${e.assets ? "https://cdn.discordapp.com/app-assets/" + e.application_id + "/" + e.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + e.application_id}'>
+                        
+                        <div>
+                            <span><b>${e.name}</b></span>
+                            <span>${e.details || ""}</span>
+                            <span>${e.state || ""}</span>
+                            <span>${e.timestamps.start ? new Date(Date.now() - e.timestamps.start).toISOString().slice(11, 19) + " elapsed" : ""}</span>
+                        </div>
+                    </div>
+                `;
+                document.querySelector("#discordPresence").appendChild(div);
             }
-
-            return true;
         });
 
         console.log(activity)
 
-        document.querySelector("#presenceAvatar").src = activity.assets ? "https://cdn.discordapp.com/app-assets/" + activity.application_id + "/" + activity.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + activity.application_id;
-        document.querySelector("#presenceName").innerHTML = "<b>" + activity.name + "</b>";
-        document.querySelector("#presenceDescription").innerHTML = activity.details || "";
-        document.querySelector("#presenceState").innerHTML = activity.state || "";
-        document.querySelector("#presenceTime").innerHTML = activity.timestamps.start ? new Date(Date.now() - activity.timestamps.start).toISOString().slice(11, 19) + " elapsed" : "";
-        document.querySelector("#discordHR").style.display = "block";
-        document.querySelector("#discordPresence").style.display = "flex";
+        // document.querySelector("#presenceAvatar").src = activity.assets ? "https://cdn.discordapp.com/app-assets/" + activity.application_id + "/" + activity.assets.large_image + ".png" : "https://dcdn.dstn.to/app-icons/" + activity.application_id;
+        // document.querySelector("#presenceName").innerHTML = "<b>" + activity.name + "</b>";
+        // document.querySelector("#presenceDescription").innerHTML = activity.details || "";
+        // document.querySelector("#presenceState").innerHTML = activity.state || "";
+        // document.querySelector("#presenceTime").innerHTML = activity.timestamps.start ? new Date(Date.now() - activity.timestamps.start).toISOString().slice(11, 19) + " elapsed" : "";
+        // document.querySelector("#discordPresence").style.display = "flex";
         // https://cdn.discordapp.com/app-assets/383226320970055681/565944799455346703.png
     }
     loadDiscord()
