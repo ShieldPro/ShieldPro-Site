@@ -167,11 +167,15 @@
         }
 
         // DISCORD PRESENCE
-        const activity = await jsonData.data.activities.every(e => {
+        var activity;
+        await jsonData.data.activities.every(e => {
             if (e.type == 0){
                 console.log(e.type);
-                return e;
+                activity = e;
+                return false;
             }
+
+            return true;
         });
 
         console.log(activity)
