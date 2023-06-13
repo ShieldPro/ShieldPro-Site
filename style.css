@@ -392,6 +392,7 @@ hr{
 
 #presenceAvatar{
     border-radius: 10px;
+    max-height: 90px;
 }
 
 #presenceDetails{
