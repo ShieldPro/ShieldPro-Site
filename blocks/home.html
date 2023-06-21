@@ -142,20 +142,21 @@
         document.querySelector("#avatar").onmouseleave = function(){hideTooltip()};
         if (jsonData.data.discord_status == "offline"){return}
 
-        if (jsonData.data.activities[0].type == 4){
-            document.querySelector("#discordStatus").innerHTML = jsonData.data.activities[0].state;
-        }else if(jsonData.data.activities[0].type == 2){
-            document.querySelector("#discordStatus").innerHTML = "Listening to <b>" + jsonData.data.activities[0].name + "</b>";
-        }else if(jsonData.data.activities[0].type == 0){
-            document.querySelector("#discordStatus").innerHTML = "In <b>" + jsonData.data.activities[0].name + "</b>";
-        }
-
         if (jsonData.data.discord_status == "dnd"){
             document.querySelector("#avatar").style.borderColor = "#f23f43";
         }else if(jsonData.data.discord_status == "idle"){
             document.querySelector("#avatar").style.borderColor = "#f0b232";
         }else if(jsonData.data.discord_status == "online"){
             document.querySelector("#avatar").style.borderColor = "#23a55a";
+        }
+
+        if (!jsonData.data.activities){return}
+        if (jsonData.data.activities[0].type == 4){
+            document.querySelector("#discordStatus").innerHTML = jsonData.data.activities[0].state;
+        }else if(jsonData.data.activities[0].type == 2){
+            document.querySelector("#discordStatus").innerHTML = "Listening to <b>" + jsonData.data.activities[0].name + "</b>";
+        }else if(jsonData.data.activities[0].type == 0){
+            document.querySelector("#discordStatus").innerHTML = "Playing <b>" + jsonData.data.activities[0].name + "</b>";
         }
 
         // DISCORD PRESENCE
